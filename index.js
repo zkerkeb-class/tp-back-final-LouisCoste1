@@ -1,9 +1,12 @@
 import express from 'express';
+import cors from 'cors';
 import pokemon from './schema/pokemon.js';
 
 import './connect.js';
 
 const app = express();
+
+app.use(cors()); 
 
 app.use(express.json());
 
@@ -31,7 +34,6 @@ app.get('/pokemons', async (req, res) => {
   }
 })
 
-// Search pokemon by name
 app.get('/pokemons/search', async (req, res) => {
   try {
     const { name } = req.query;
