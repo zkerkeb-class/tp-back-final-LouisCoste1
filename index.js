@@ -83,10 +83,19 @@ app.get('/pokemons/:id', async (req, res) => {
 
 app.post('/pokemons', async (req, res) => {
   try {
+    console.log('📝 Tentative de création d\'un Pokémon:', JSON.stringify(req.body, null, 2));
+    
     const newPokemon = new pokemon(req.body);
+    console.log('✅ Pokémon validé, sauvegarde en cours...');
+    
     const savedPokemon = await newPokemon.save();
+    console.log('🎉 Pokémon créé avec succès! ID:', savedPokemon.id);
+    
     res.status(201).json(savedPokemon);
   } catch (error) {
+    console.error('❌ Erreur lors de la création du Pokémon:', error.message);
+    console.error('Détails de l\'erreur:', error);
+    
     if (error.code === 11000) {
       res.status(400).json({ error: 'Pokemon with this ID already exists' });
     } else if (error.name === 'ValidationError') {
