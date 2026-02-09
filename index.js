@@ -27,7 +27,7 @@ app.get('/pokemons', async (req, res) => {
     const limit = 20;
     const skip = (page - 1) * limit;
     
-    const pokemons = await pokemon.find({}).skip(skip).limit(limit);
+    const pokemons = await pokemon.find({}).sort({ id: 1 }).skip(skip).limit(limit);
     const total = await pokemon.countDocuments();
     
     res.json({
