@@ -28,6 +28,38 @@ const pokemonSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
+    // Nouveaux champs pour le système de combat
+    level: {
+        type: Number,
+        default: 5,
+        min: 1,
+        max: 100,
+    },
+    exp: {
+        type: Number,
+        default: 0,
+        min: 0,
+    },
+    moves: {
+        type: [String],
+        default: [],
+    },
+    shiny: {
+        type: Boolean,
+        default: false,
+    },
+    nature: {
+        type: String,
+        default: 'Hardy',
+    },
+    wins: {
+        type: Number,
+        default: 0,
+    },
+    losses: {
+        type: Number,
+        default: 0,
+    },
 });
 
 //  pokemon est le nom de la collection dans la base de données MongoDB. il y aura une collection nommée "pokemons"
